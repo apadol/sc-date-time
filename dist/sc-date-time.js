@@ -30,7 +30,7 @@
   clock: 'Clock',
   calendar: 'Calendar'
 }).directive('timeDatePicker', [
-  '$filter', '$sce', '$rootScope', '$parse', 'scDateTimeI18n', 'scDateTimeConfig', 'angularMoment', function($filter, $sce, $rootScope, $parse, scDateTimeI18n, scDateTimeConfig, moment) {
+  '$filter', '$sce', '$rootScope', '$parse', 'scDateTimeI18n', 'scDateTimeConfig', function($filter, $sce, $rootScope, $parse, scDateTimeI18n, scDateTimeConfig) {
     var _dateFilter;
     _dateFilter = $filter('date');
     return {

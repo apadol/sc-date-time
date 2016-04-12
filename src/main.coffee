@@ -24,8 +24,8 @@ angular.module('scDateTime', [])
 	clock: 'Clock'
 	calendar: 'Calendar'
 ).directive 'timeDatePicker',
-['$filter', '$sce', '$rootScope', '$parse', 'scDateTimeI18n', 'scDateTimeConfig', 'angularMoment'
-($filter, $sce, $rootScope, $parse, scDateTimeI18n, scDateTimeConfig, moment) ->
+['$filter', '$sce', '$rootScope', '$parse', 'scDateTimeI18n', 'scDateTimeConfig'
+($filter, $sce, $rootScope, $parse, scDateTimeI18n, scDateTimeConfig) ->
 	_dateFilter = $filter 'date'
 	restrict: 'AE'
 	replace: true
