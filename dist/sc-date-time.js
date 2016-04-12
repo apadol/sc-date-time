@@ -30,7 +30,7 @@
   clock: 'Clock',
   calendar: 'Calendar'
 }).directive('timeDatePicker', [
-  '$filter', '$sce', '$rootScope', '$parse', 'scDateTimeI18n', 'scDateTimeConfig', function($filter, $sce, $rootScope, $parse, scDateTimeI18n, scDateTimeConfig) {
+  '$filter', '$sce', '$rootScope', '$parse', 'scDateTimeI18n', 'scDateTimeConfig', 'angularMoment', function($filter, $sce, $rootScope, $parse, scDateTimeI18n, scDateTimeConfig, moment) {
     var _dateFilter;
     _dateFilter = $filter('date');
     return {
@@ -162,37 +162,37 @@
               var _timeString;
               _timeString = scope._hours24 ? 'HH:mm' : 'h:mm a';
               if (scope._displayMode === 'full' && !scope._verticalMode) {
-                return _dateFilter(scope.date, "EEEE d MMMM yyyy, " + _timeString);
+                return moment(scope.date).format("EEEE d MMMM yyyy, " + _timeString);
               } else if (scope._displayMode === 'time') {
-                return _dateFilter(scope.date, _timeString);
+                return (moment(scope.date)).format(_timeString);
               } else if (scope._displayMode === 'date') {
-                return _dateFilter(scope.date, 'EEE d MMM yyyy');
+                return (moment(scope.date)).format('EEE d MMM yyyy');
               } else {
-                return _dateFilter(scope.date, "d MMM yyyy, " + _timeString);
+                return moment(scope.date).format("d MMM yyyy, " + _timeString);
               }
             },
             title: function() {
               if (scope._mode === 'date') {
-                return _dateFilter(scope.date, (scope._displayMode === 'date' ? 'EEEE' : "EEEE " + (scope._hours24 ? 'HH:mm' : 'h:mm a')));
+                return moment(scope.date).format((scope._displayMode === 'date' ? 'EEEE' : "EEEE " + (scope._hours24 ? 'HH:mm' : 'h:mm a')));
               } else {
-                return _dateFilter(scope.date, 'MMMM d yyyy');
+                return moment(scope.date).format('MMMM d yyyy');
               }
             },
             "super": function() {
               if (scope._mode === 'date') {
-                return _dateFilter(scope.date, 'MMM');
+                return (moment(scope.date)).format('MMM');
               } else {
                 return '';
               }
             },
             main: function() {
-              return $sce.trustAsHtml(scope._mode === 'date' ? _dateFilter(scope.date, 'd') : scope._hours24 ? _dateFilter(scope.date, 'HH:mm') : (_dateFilter(scope.date, 'h:mm')) + "<small>" + (_dateFilter(scope.date, 'a')) + "</small>");
+              return $sce.trustAsHtml(scope._mode === 'date' ? (moment(scope.date)).format('d') : scope._hours24 ? (moment(scope.date)).format('HH:mm') : ((moment(scope.date)).format('h:mm')) + "<small>" + ((moment(scope.date)).format('a')) + "</small>");
             },
             sub: function() {
               if (scope._mode === 'date') {
-                return _dateFilter(scope.date, 'yyyy');
+                return (moment(scope.date)).format('yyyy');
               } else {
-                return _dateFilter(scope.date, 'HH:mm');
+                return (moment(scope.date)).format('HH:mm');
               }
             }
           };

@@ -20,7 +20,8 @@
   ],
   "dependencies": {
     "angular": "^1.2.x",
-    "font-awesome": "^4.2.0"
+    "font-awesome": "^4.2.0",
+    "angular-moment": "~0.10.3"
   },
   "license": "MIT",
   "homepage": "http://simeonc.github.io/sc-date-time"
