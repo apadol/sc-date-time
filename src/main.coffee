@@ -111,32 +111,32 @@ angular.module('scDateTime', [])
 				_timeString = if scope._hours24 then 'HH:mm' else 'h:mm a'
 				if scope._displayMode is 'full' and not scope._verticalMode
 					moment scope.date
-                        .format "EEEE d MMMM yyyy, #{_timeString}"
+                        .format "dddd D MMMM YYYY, #{_timeString}"
 				else if scope._displayMode is 'time' then (moment scope.date) .format _timeString
-				else if scope._displayMode is 'date' then (moment scope.date) .format 'EEE d MMM yyyy'
+				else if scope._displayMode is 'date' then (moment scope.date) .format 'ddd D MMM YYYY'
 				else
                     moment scope.date
-                        .format "d MMM yyyy, #{_timeString}"
+                        .format "D MMM YYYY, #{_timeString}"
 			title: ->
 				if scope._mode is 'date'
 					moment scope.date
-                        .format (if scope._displayMode is 'date' then 'EEEE' else "EEEE #{
+                        .format (if scope._displayMode is 'date' then 'dddd' else "dddd #{
 							if scope._hours24 then 'HH:mm' else 'h:mm a'
 					}")
 				else
                     moment scope.date
-                        .format 'MMMM d yyyy'
+                        .format 'MMMM D YYYY'
 			super: ->
 				if scope._mode is 'date' then (moment scope.date) .format 'MMM'
 				else ''
 			main: -> $sce.trustAsHtml(
-				if scope._mode is 'date' then (moment scope.date) .format 'd'
+				if scope._mode is 'date' then (moment scope.date) .format 'D'
 				else
 					if scope._hours24 then (moment scope.date) .format 'HH:mm'
 					else "#{(moment scope.date) .format 'h:mm'}<small>#{(moment scope.date) .format 'a'}</small>"
 			)
 			sub: ->
-				if scope._mode is 'date' then (moment scope.date) .format 'yyyy'
+				if scope._mode is 'date' then (moment scope.date) .format 'YYYY'
 				else (moment scope.date) .format 'HH:mm'
 
 		scope.calendar =
