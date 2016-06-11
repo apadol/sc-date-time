@@ -381,12 +381,18 @@
             }
           });
           scope.$watch('clock.minutes', function(val, oldVal) {
+            if (val === '') {
+              val = "00";
+            }
             scope.clock._minutes = Math.max(0, Math.min(59, parseInt(val)));
             if (scope.clock.fillzeros(scope.clock._minutes) !== scope.clock.minutes) {
               return scope.clock.minutes = scope.clock.fillzeros(scope.clock._minutes);
             }
           });
           scope.$watch('clock.hours', function(val) {
+            if (val === '') {
+              val = "00";
+            }
             if (scope._hours24) {
               scope.clock._hours = Math.max(0, Math.min(23, parseInt(val)));
             } else {

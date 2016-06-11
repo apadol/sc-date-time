@@ -251,10 +251,14 @@ angular.module('scDateTime', [])
 					scope.date.setHours val
 					scope.saveUpdateDate()
 		scope.$watch 'clock.minutes', (val, oldVal) ->
+			if val is ''
+				val = "00"
 			scope.clock._minutes = Math.max 0, Math.min 59, parseInt(val)
 			if scope.clock.fillzeros(scope.clock._minutes) isnt scope.clock.minutes
 					scope.clock.minutes = scope.clock.fillzeros(scope.clock._minutes)
 		scope.$watch 'clock.hours', (val) ->
+			if val is ''
+				val = "00"
 			if scope._hours24
 				scope.clock._hours = Math.max 0, Math.min 23, parseInt(val)
 			else
