@@ -150,8 +150,12 @@
             scope.date = newVal ? new Date(newVal) : new Date();
             scope.calendar._year = scope.date.getFullYear();
             scope.calendar._month = scope.date.getMonth();
-            scope.clock._minutes = scope.date.getMinutes();
-            scope.clock._hours = scope._hours24 ? scope.date.getHours() : scope.date.getHours() % 12;
+            scope.clock.minutes = scope.clock.fillzeros(scope.date.getMinutes());
+            if (scope._hours24) {
+              scope.clock.hours = scope.clock.fillzeros(scope.date.getHours());
+            } else {
+              scope.clock.hours = scope.clock.fillzeros(scope.date.getHours() % 12);
+            }
             if (!scope._hours24 && scope.clock._hours === 0) {
               scope.clock._hours = 12;
             }

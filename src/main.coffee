@@ -102,8 +102,11 @@ angular.module('scDateTime', [])
 			scope.date = if newVal then new Date newVal else new Date()
 			scope.calendar._year = scope.date.getFullYear()
 			scope.calendar._month = scope.date.getMonth()
-			scope.clock._minutes = scope.date.getMinutes()
-			scope.clock._hours = if scope._hours24 then scope.date.getHours() else scope.date.getHours() % 12
+			scope.clock.minutes = scope.clock.fillzeros(scope.date.getMinutes())
+			if scope._hours24
+				scope.clock.hours = scope.clock.fillzeros(scope.date.getHours())
+			else
+				scope.clock.hours = scope.clock.fillzeros(scope.date.getHours() % 12)
 			if not scope._hours24 and scope.clock._hours is 0 then scope.clock._hours = 12
 			scope.calendar.yearChange save
 		scope.display =
