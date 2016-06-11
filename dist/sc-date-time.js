@@ -376,6 +376,31 @@
               }
             }
           });
+          scope.$watch('clock.minutes', function(val, oldVal) {
+            val = parseInt(val,10);
+            if ((val != null) && val !== scope.date.getMinutes() && !isNaN(val) && (0 <= val && val <= 59)) {
+              scope.date.setMinutes(val);
+              return scope.saveUpdateDate();
+            }
+          });
+          scope.$watch('clock.hours', function(val) {
+            val = parseInt(val,10);
+            if ((val != null) && !isNaN(val)) {
+              if (!scope._hours24) {
+                if (val === 24) {
+                  val = 12;
+                } else if (val === 12) {
+                  val = 0;
+                } else if (!scope.clock.isAM()) {
+                  val += 12;
+                }
+              }
+              if (val !== scope.date.getHours()) {
+                scope.date.setHours(val);
+                return scope.saveUpdateDate();
+              }
+            }
+          });
           scope.setNow = function() {
             scope.setDate();
             return scope.saveUpdateDate();

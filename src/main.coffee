@@ -247,6 +247,21 @@ angular.module('scDateTime', [])
 				if val isnt scope.date.getHours()
 					scope.date.setHours val
 					scope.saveUpdateDate()
+		scope.$watch 'clock.minutes', (val, oldVal) ->
+			val = parseInt(val)
+			if val? and val isnt scope.date.getMinutes() and not isNaN(val) and 0 <= val <= 59
+				scope.date.setMinutes val
+				scope.saveUpdateDate()
+		scope.$watch 'clock.hours', (val) ->
+			val = parseInt(val)
+			if val? and not isNaN(val)
+				if not scope._hours24
+					if val is 24 then val = 12
+					else if val is 12 then val = 0
+					else if not scope.clock.isAM() then val += 12
+				if val isnt scope.date.getHours()
+					scope.date.setHours val
+					scope.saveUpdateDate()
 
 		scope.setNow = ->
 			scope.setDate()
