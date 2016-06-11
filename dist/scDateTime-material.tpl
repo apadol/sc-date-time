@@ -58,14 +58,14 @@
       <md-button type="button" ng-click="modeSwitch()" aria-label="{{modeSwitchText()}}" class="switch-control"><i class="fa fa-clock-o"></i><i class="fa fa-calendar"></i><span class="visuallyhidden">{{modeSwitchText()}}</span></md-button>
       <div class="time-control">
         <div class="time-inputs">
-          <input type="number" min="{{_hours24 ? 0 : 1}}" max="{{_hours24 ? 23 : 12}}" ng-model="clock._hours"/>
+          <input type="text" min="{{_hours24 ? 0 : 1}}" max="{{_hours24 ? 23 : 12}}" ng-model="clock.hours"/>
           <md-button type="button" ng-click="clock._incHours(1)" aria-label="{{:: translations.incrementHours}}" class="hours up">
             <ng-md-icon icon="keyboard_arrow_up" size="64"></ng-md-icon>
           </md-button>
           <md-button type="button" ng-click="clock._incHours(-1)" aria-label="{{:: translations.decrementHours}}" class="hours down">
             <ng-md-icon icon="keyboard_arrow_down" size="64"></ng-md-icon>
           </md-button>
-          <input type="number" min="0" max="59" ng-model="clock._minutes"/>
+          <input type="text" min="0" max="59" ng-model="clock.minutes"/>
           <md-button type="button" ng-click="clock._incMinutes(1)" aria-label="{{:: translations.incrementMinutes}}" class="minutes up">
             <ng-md-icon icon="keyboard_arrow_up" size="64"></ng-md-icon>
           </md-button>

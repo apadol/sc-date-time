@@ -208,13 +208,24 @@ angular.module('scDateTime', [])
 		scope.clock =
 			_minutes: 0
 			_hours: 0
+			minutes: "00"
+			hours: "00"
+			fillzeros: (horm) ->
+				if horm < 10
+					"0"+horm
+				else
+					""+horm
 			_incHours: (inc) ->
-				@_hours = if scope._hours24
-				then Math.max 0, Math.min 23, @_hours + inc
-				else Math.max 1, Math.min 12, @_hours + inc
-				if isNaN @_hours then @_hours = 0
+				if scope._hours24
+					scope.clock._hours = Math.max 0, Math.min 23, @_hours + inc
+					scope.clock.hours = scope.clock.fillzeros scope.clock._hours
+				else
+					scope.clock._hours = Math.max 1, Math.min 12, @_hours + inc
+					scope.clock.hours = scope.clock.fillzeros scope.clock._hours
+				if isNaN scope.clock_hours then scope.clock_hours = 0
 			_incMinutes: (inc) ->
 				@_minutes = Math.max 0, Math.min 59, @_minutes + inc
+				scope.clock.minutes = scope.clock.fillzeros scope.clock._minutes
 				if isNaN @_minutes then @_minutes = 0
 			setAM: (b = not @isAM()) ->
 				if b and not @isAM()

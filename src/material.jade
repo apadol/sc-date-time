@@ -31,12 +31,12 @@
 				span.visuallyhidden {{modeSwitchText()}}
 			.time-control
 				.time-inputs
-					input(type="number" min="{{_hours24 ? 0 : 1}}" max="{{_hours24 ? 23 : 12}}" ng-model="clock._hours")
+					input(type="text" min="{{_hours24 ? 0 : 1}}" max="{{_hours24 ? 23 : 12}}" ng-model="clock.hours")
 					md-button.hours.up(type="button" ng-click="clock._incHours(1)" aria-label="{{:: translations.incrementHours}}")
 						ng-md-icon(icon="keyboard_arrow_up" size="64")
 					md-button.hours.down(type="button" ng-click="clock._incHours(-1)" aria-label="{{:: translations.decrementHours}}")
 						ng-md-icon(icon="keyboard_arrow_down" size="64")
-					input(type="number" min="0" max="59" ng-model="clock._minutes")
+					input(type="text" min="0" max="59" ng-model="clock.minutes")
 					md-button.minutes.up(type="button" ng-click="clock._incMinutes(1)" aria-label="{{:: translations.incrementMinutes}}")
 						ng-md-icon(icon="keyboard_arrow_up" size="64")
 					md-button.minutes.down(type="button" ng-click="clock._incMinutes(-1)" aria-label="{{:: translations.decrementMinutes}}")
