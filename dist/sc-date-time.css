@@ -351,13 +351,6 @@
 .time-date.full-mode > .control > .slider > .switch-control {
   display: none;
 }
-.time-date.full-mode > .buttons {
-  background-color: #009688;
-}
-.time-date.full-mode > .buttons > button {
-/* Invert colours for bottom bar */
-  color: #fff !important;
-}
 .time-date:not(.full-mode).compact {
   width: 22.8rem;
 }
